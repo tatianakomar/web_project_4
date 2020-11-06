@@ -1,0 +1,15 @@
+.profile__subline {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: normal;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__subline {
+        font-size: 14px;
+        line-height: 17px;
+    }   
+}
