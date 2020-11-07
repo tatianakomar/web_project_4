@@ -1,7 +1,0 @@
-@import url(./_action/prifile__btn_action_edit.css);
-@import url(./_action/profile__btn_action_add.css);
-
-.profile__btn {
-    background-color: #000;
-    padding: 0;
-}

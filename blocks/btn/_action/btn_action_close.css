@@ -1,0 +1,18 @@
+.btn_action_close {
+    width: 40px;
+    height: 40px;
+    background: url(../../../images/btn_close.svg) center no-repeat;
+    border: none;
+    position: absolute;
+    top: -40px;
+    right: -40px;
+}
+
+@media screen and (max-width: 530px) {
+    .btn_action_close {
+        width: 26px;
+        height: 26px;
+        top: -40px;
+        right: 0;
+    }   
+}

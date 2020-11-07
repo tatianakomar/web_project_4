@@ -1,0 +1,6 @@
+.btn_action_edit {
+    width: 24px;
+    height: 24px;
+    background: url(../../../images/btn-edit.svg) center no-repeat;
+    border: 1px solid #fff;
+}

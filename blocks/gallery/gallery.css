@@ -1,6 +1,7 @@
-@import url(./__elements/gallery__elements.css);
-@import url(./__element/gallery__element.css);
+@import url(./__cards/gallery__cards.css);
+@import url(./__card/gallery__card.css);
 @import url(./__image/gallery__image.css);
+@import url(./__place/gallery__place.css);
 @import url(./__title/gallery__title.css);
-@import url(./__btn/gallery__btn.css);
+@import url(../btn/_action/btn_action_like.css);
 
