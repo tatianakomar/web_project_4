@@ -21,7 +21,7 @@
                         <h2 class="profile__name">Jacques Cousteau</h2>
                         <button class="btn btn_action_edit"></button>
                     </div>
-                    <p class="profile__about">Explorer</p>
+                    <p class="profile__job">Explorer</p>
                 </div>
                 <button class="btn btn_action_add"></button>
             </section>
@@ -82,12 +82,14 @@
                 <button class="btn btn_action_close"></button>
                 <h3 class="popup-edit__title">Edit profile</h3>
                 <form class="popup-edit__form">
-                    <input class="popup-edit__input" type="text" placeholder="Jacques Cousteau">
-                    <input class="popup-edit__input" type="text" placeholder="Explorer">
+                    <input class="popup-edit__input popup-edit__input_name" type="text" value="Jacques Cousteau" name="Name" placeholder="Name" required>
+                    <input class="popup-edit__input popup-edit__input_job" type="text" value="Explorer" name="Job" placeholder="About me" required>
+                    <button class="btn btn_action_save">Save</button>
                 </form>
             </div>
         </div>
     </div>
+    <script src="./script.js"></script>
 </body>
 
 </html>

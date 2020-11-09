@@ -4,3 +4,7 @@
     background: url(../../../images/btn-edit.svg) center no-repeat;
     border: 1px solid #fff;
 }
+
+.btn_action_edit:hover {
+    opacity: 0.6;
+}

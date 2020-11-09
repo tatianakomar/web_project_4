@@ -1,9 +1,11 @@
 @import url(../btn/_action/btn_action_close.css);
+@import url(../btn/_action/btn_action_save.css);
 @import url(./__content/popup-edit__content.css);
 @import url(./__title/popup-edit__title.css);
 @import url(./__input/popup-edit__input.css);
 
 .popup-edit {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;

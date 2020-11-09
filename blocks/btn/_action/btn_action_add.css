@@ -11,3 +11,7 @@
         width: 282px;
     }   
 }
+
+.btn_action_add:hover {
+    opacity: 0.6;
+}
