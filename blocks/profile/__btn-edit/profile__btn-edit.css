@@ -1,10 +1,10 @@
-.btn_action_edit {
+.profile__btn-edit {
     width: 24px;
     height: 24px;
     background: url(../../../images/btn-edit.svg) center no-repeat;
     border: 1px solid #fff;
 }
 
-.btn_action_edit:hover {
+.profile__btn-edit:hover {
     opacity: 0.6;
 }

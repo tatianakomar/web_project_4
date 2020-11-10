@@ -5,7 +5,6 @@
     border-radius: 10px;
     position: relative;
     margin: auto;
-    margin-top: 195px;
     padding: 34px 36px 36px;
     box-sizing: border-box;
 }
@@ -14,7 +13,6 @@
     .popup-edit__content {
         width: 282px;
         min-height: 322px;
-        margin-top: 123px;
         padding: 25px 22px;
     }   
 }
