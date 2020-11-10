@@ -1,4 +1,4 @@
-.btn_action_add {
+.profile__btn-add {
     width: 150px;
     height: 50px;
     background: url(../../../images/btn-add.svg) center no-repeat;
@@ -6,12 +6,12 @@
     border-radius: 2px;
 }
 
-@media screen and (max-width: 435px) {
-    .btn_action_add {
-        width: 282px;
-    }   
+.profile__btn-add:hover {
+    opacity: 0.6;
 }
 
-.btn_action_add:hover {
-    opacity: 0.6;
+@media screen and (max-width: 435px) {
+    .profile__btn-add {
+        width: 282px;
+    }   
 }

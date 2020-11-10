@@ -3,5 +3,4 @@
 @import url(./__image/gallery__image.css);
 @import url(./__place/gallery__place.css);
 @import url(./__title/gallery__title.css);
-@import url(../btn/_action/btn_action_like.css);
-
+@import url(./__btn-like/gallery__btn-like.css);

@@ -1,1 +1,6 @@
-
+.gallery__btn-like {
+    background: url(../../../images/btn-like.svg) center no-repeat;
+    border: none;
+    width: 21px;
+    height: 19px;
+}
