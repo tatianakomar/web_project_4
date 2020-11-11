@@ -12,15 +12,13 @@ let openPopup = function() {
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
   // Open popup
-  popup.classList.remove("popup-edit");
-  popup.classList.add("popup-edit_opened");  
+  popup.classList.add("popup-edit_open");  
 }
 
 editButton.addEventListener("click", openPopup);
 
 let closePopup = function() {
-    popup.classList.remove("popup-edit_opened");
-    popup.classList.add("popup-edit"); 
+    popup.classList.remove("popup-edit_open");
 }
   
 closeButton.addEventListener("click", closePopup);

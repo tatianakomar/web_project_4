@@ -1,0 +1,16 @@
+@import url(../__content/popup-edit__content.css);
+@import url(../__btn-close/popup-edit__btn-close.css);
+@import url(../__title/popup-edit__title.css);
+@import url(../_input/popup-edit_input.css);
+@import url(../__btn-save/popup-edit__btn-save.css);
+
+.popup-edit_open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
