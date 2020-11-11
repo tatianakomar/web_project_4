@@ -6,6 +6,8 @@
     position: absolute;
     top: -40px;
     right: -40px;
+    cursor: pointer;
+    transition: opacity 0.5s;
 }
 
 .popup-edit__btn-close:hover {

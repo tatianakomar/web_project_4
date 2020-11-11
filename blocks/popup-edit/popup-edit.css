@@ -1,10 +1,7 @@
-@import url(./_opened/popup-edit_opened.css);
-@import url(./__content/popup-edit__content.css);
-@import url(./__btn-close/popup-edit__btn-close.css);
-@import url(./__title/popup-edit__title.css);
-@import url(./_input/popup-edit_input.css);
-@import url(./__btn-save/popup-edit__btn-save.css);
+
+
 
 .popup-edit {
     display: none;
+    
 }
