@@ -1,4 +1,4 @@
-.popup-edit__btn-save {
+.popup-edit__btn-submit {
     width: 100%;
     font-size: 18px;
     line-height: 22px;
@@ -13,12 +13,12 @@
     transition: opacity 0.5s;
 }
 
-.popup-edit__btn-save:hover {
+.popup-edit__btn-submit:hover {
     opacity: 0.8;
 }
 
 @media screen and (max-width: 435px) {
-    .popup-edit__btn-save {
+    .popup-edit__btn-submit {
         padding: 14px 100px;
     }   
 }
