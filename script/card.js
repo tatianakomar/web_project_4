@@ -78,32 +78,77 @@ const initCard = function(){
     }
     closeButton.addEventListener("click", closePopup);
 
-    //Create New Card
+    const popupTemplate = document.querySelector("#popup-open-template").content;
+    const page = document.querySelector(".page");
+    // Create New Card
     let formSubmitHandler = function(evt) {
         evt.preventDefault();
         const newCard = cardTemplate.cloneNode(true);
         newCard.querySelector(".card__image").src = linkInput.value;
         newCard.querySelector(".card__image").alt = titleInput.value;
         newCard.querySelector(".card__title").textContent = titleInput.value;
-        gallery.prepend(newCard);
+        
 
-        //Like New Card
+        // Like New Card
         let likeButton = document.querySelector(".card__btn-like");
         let likeCard = function() {
             likeButton.classList.toggle("card__btn-like_active");
         }
         likeButton.addEventListener("click", likeCard);
 
-        //Delete New Card
+        // Delete New Card
         let deleteButton = document.querySelector(".card__btn-delete");
         let deleteCard = function(){
             const cardItem = deleteButton.closest(".card");
             cardItem.remove();
         }
         deleteButton.addEventListener("click", deleteCard);
+        // XXX
+        newCard.querySelector(".card__image").addEventListener("click", ()=>{
+            const card = popupTemplate.cloneNode(true);
+            card.querySelector(".popup-open__image").src = linkInput.value;
+            card.querySelector(".popup-open__image").alt = titleInput.value;
+            card.querySelector(".popup-open__title").textContent = titleInput.value;
+            
 
+            const closeCardButton = card.querySelector(".popup-open__btn-close");
+            const closeCard = function(){
+                const openedCardItem = closeCardButton.closest(".popup-open");
+                openedCardItem.remove();
+            }
+            closeCardButton.addEventListener("click", closeCard);
+            page.append(card);
+        })
+        gallery.prepend(newCard);
         closePopup();
     }
     formCard.addEventListener("submit", formSubmitHandler);
+
+    
+    const cardImages = document.querySelectorAll(".card__image");
+    cardImages.forEach((card)=>{
+        card.addEventListener("click", ()=>{
+            const newCard = popupTemplate.cloneNode(true);
+            newCard.querySelector(".popup-open__image").src = card.src;
+            newCard.querySelector(".popup-open__image").alt = card.alt;
+            newCard.querySelector(".popup-open__title").textContent = card.alt;
+            
+
+            const closeCardButton = newCard.querySelector(".popup-open__btn-close");
+            const closeCard = function(){
+                const openedCardItem = closeCardButton.closest(".popup-open");
+                openedCardItem.remove();
+            }
+            closeCardButton.addEventListener("click", closeCard);
+            page.append(newCard);
+        });
+        
+            
+    });
+    
+
+    
+    
+   
 }
 initCard();
