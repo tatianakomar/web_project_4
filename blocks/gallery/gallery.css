@@ -1,6 +1,18 @@
-@import url(./__cards/gallery__cards.css);
-@import url(./__card/gallery__card.css);
-@import url(./__image/gallery__image.css);
-@import url(./__place/gallery__place.css);
-@import url(./__title/gallery__title.css);
-@import url(./__btn-like/gallery__btn-like.css);
+.gallery {
+    max-width: 880px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 282px);
+    grid-gap: 20px 17px;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 68px;
+    list-style: none;
+    padding: 0;
+}
+
+@media screen and (max-width: 320px) {
+    .gallery {
+        margin-bottom: 47px;
+    }   
+}

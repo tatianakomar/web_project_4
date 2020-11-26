@@ -1,0 +1,14 @@
+@import url(./__content/popup-open__content.css);
+@import url(./__btn-close/popup-open__btn-close.css);
+@import url(./__image/popup-open__image.css);
+@import url(./__title/popup-open__title.css);
+
+.popup-open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
