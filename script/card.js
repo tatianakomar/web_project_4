@@ -90,27 +90,27 @@ const initCard = function(){
         
 
         // Like New Card
-        let likeButton = document.querySelector(".card__btn-like");
+        let likeButton = newCard.querySelector(".card__btn-like");
         let likeCard = function() {
             likeButton.classList.toggle("card__btn-like_active");
         }
         likeButton.addEventListener("click", likeCard);
 
         // Delete New Card
-        let deleteButton = document.querySelector(".card__btn-delete");
+        let deleteButton = newCard.querySelector(".card__btn-delete");
         let deleteCard = function(){
             const cardItem = deleteButton.closest(".card");
             cardItem.remove();
         }
         deleteButton.addEventListener("click", deleteCard);
-        // XXX
+        // Open Popup-Card 
         newCard.querySelector(".card__image").addEventListener("click", ()=>{
             const card = popupTemplate.cloneNode(true);
             card.querySelector(".popup-open__image").src = linkInput.value;
             card.querySelector(".popup-open__image").alt = titleInput.value;
             card.querySelector(".popup-open__title").textContent = titleInput.value;
             
-
+            // Close Popup-Card
             const closeCardButton = card.querySelector(".popup-open__btn-close");
             const closeCard = function(){
                 const openedCardItem = closeCardButton.closest(".popup-open");
@@ -133,7 +133,6 @@ const initCard = function(){
             newCard.querySelector(".popup-open__image").alt = card.alt;
             newCard.querySelector(".popup-open__title").textContent = card.alt;
             
-
             const closeCardButton = newCard.querySelector(".popup-open__btn-close");
             const closeCard = function(){
                 const openedCardItem = closeCardButton.closest(".popup-open");
@@ -143,12 +142,7 @@ const initCard = function(){
             page.append(newCard);
         });
         
-            
-    });
-    
+    });    
 
-    
-    
-   
 }
 initCard();
