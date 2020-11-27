@@ -1,8 +1,3 @@
-@import url(./__content/popup-open__content.css);
-@import url(./__btn-close/popup-open__btn-close.css);
-@import url(./__image/popup-open__image.css);
-@import url(./__title/popup-open__title.css);
-
 .popup-open {
     display: flex;
     position: fixed;
@@ -11,4 +6,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.5s, opacity 0.5s linear;
 }
