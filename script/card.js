@@ -1,9 +1,9 @@
 const initCard = () => {
+    const cardPopup = document.querySelector(".popup-open");
+    const cardTemplate = document.querySelector("#card-template").content;
+    const gallery = document.querySelector(".gallery");
+
     const addCard = (link, title, isAppend) => {
-        const cardTemplate = document.querySelector("#card-template").content;
-        const popupTemplate = document.querySelector("#popup-open-template").content;
-        const page = document.querySelector(".page");
-        const gallery = document.querySelector(".gallery");
         const newCard = cardTemplate.cloneNode(true);
         newCard.querySelector(".card__image").src = link;
         newCard.querySelector(".card__image").alt = title;
@@ -24,21 +24,13 @@ const initCard = () => {
         };
         deleteButton.addEventListener("click", deleteCard);
 
-        // Open Popup-Card 
-        newCard.querySelector(".card__image").addEventListener("click", () => {
-            const card = popupTemplate.cloneNode(true);
-            card.querySelector(".popup-open__image").src = link;
-            card.querySelector(".popup-open__image").alt = title;
-            card.querySelector(".popup-open__title").textContent = title;
-
-            // Close Popup-Card
-            const closeCardButton = card.querySelector(".popup-open__btn-close");
-            const closeCard = function() {
-                const openedCardItem = closeCardButton.closest(".popup-open");
-                openedCardItem.remove();
-            };
-            closeCardButton.addEventListener("click", closeCard);
-            page.append(card);
+        // Open Card Popup
+        newCard.querySelector(".card__image").addEventListener("click", ()=> {
+            cardPopup.querySelector(".popup-open__image").src = link;
+            cardPopup.querySelector(".popup-open__image").alt = title;
+            cardPopup.querySelector(".popup-open__title").textContent = title;
+            
+            cardPopup.classList.add("popup-open_open");
         });
         if (isAppend) {
             gallery.append(newCard)
@@ -46,6 +38,13 @@ const initCard = () => {
             gallery.prepend(newCard)
         };
     }
+
+    // Close Card Popup
+    const closeCardButton = document.querySelector(".popup-open__btn-close");
+    const closeCard = ()=>{
+        cardPopup.classList.remove("popup-open_open");
+    };
+    closeCardButton.addEventListener("click", closeCard);
     // ******************************************************************************************
     // Initial Cards
     const initialCards = [{
@@ -77,7 +76,6 @@ const initCard = () => {
     initialCards.forEach((card) => {
         addCard(card.link, card.name, true);
     });
-
     // ******************************************************************************************
     // Create New Card
     const addButton = document.querySelector(".profile__btn-add");
