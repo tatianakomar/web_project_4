@@ -1,0 +1,5 @@
+@import url(../btn/__close/btn__close.css);
+
+.btn:hover {
+    opacity: 0.6;
+}

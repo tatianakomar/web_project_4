@@ -1,4 +1,4 @@
-.popup-edit__btn-close {
+.btn__close {
     width: 40px;
     height: 40px;
     background: url(../../../images/btn_close.svg) center no-repeat;
@@ -10,12 +10,8 @@
     transition: opacity 0.5s;
 }
 
-.popup-edit__btn-close:hover {
-    opacity: 0.6;
-}
-
 @media screen and (max-width: 530px) {
-    .popup-edit__btn-close {
+    .btn__close {
         width: 26px;
         height: 26px;
         right: 0;
