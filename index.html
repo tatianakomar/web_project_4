@@ -41,37 +41,42 @@
                 <button class="card__btn-delete" type="button" aria-label="Delete"></button>
             </div>
         </template>
-        
-        <div class="popup-open">
-            <div class="popup-open__content">
-                <button class="popup-open__btn-close btn__close" type="button" aria-label="Close popup"></button>
-                <img class="popup-open__image" src="" alt="">
-                <h3 class="popup-open__title"></h3>
+
+        <div class="popup popup_type_card">
+            <div class="popup__content_content_card">
+                <button class="popup__close" type="button" aria-label="Close popup"></button>
+                <img class="popup__image" src="" alt="">
+                <h3 class="popup__card-title"></h3>
             </div>
         </div>
 
-        <div class="popup-edit">
-            <div class="popup-edit__content">
-                <button class="popup-edit__btn-close btn__close" type="button" aria-label="Close popup"></button>
-                <h3 class="popup-edit__title">Edit profile</h3>
-                <form class="popup-edit__form">
-                    <input class="popup-edit_input popup-edit_input_name" type="text" name="Name" placeholder="Name" required>
-                    <input class="popup-edit_input popup-edit_input_job" type="text" name="Job" placeholder="About me" required>
-                    <button class="popup-edit__btn-submit" type="submit">Save</button>
+        <div class="popup popup_type_edit">
+            <div class="popup__content">
+                <button class="popup__close" type="button" aria-label="Close popup"></button>
+                <h3 class="popup__title">Edit profile</h3>
+                <form class="popup__form">
+                    <input class="popup_input popup_input_name" type="text" name="Name" placeholder="Name"
+                        required>
+                    <input class="popup_input popup_input_job" type="text" name="Job" placeholder="About me"
+                        required>
+                    <button class="popup__submit" type="submit">Save</button>
                 </form>
             </div>
         </div>
-        <div class="popup-add">
-            <div class="popup-add__content">
-                <button class="popup-add__btn-close btn__close" type="button" aria-label="Close popup"></button>
-                <h3 class="popup-add__title">New place</h3>
-                <form class="popup-add__form">
-                    <input class="popup-add_input popup-add_input_title" type="text" name="Title" placeholder="Title" required>
-                    <input class="popup-add_input popup-add_input_link" type="text" name="Link" placeholder="Image link" required>
-                    <button class="popup-add__btn-create" type="submit">Create</button>
+
+        <div class="popup popup_type_add">
+            <div class="popup__content">
+                <button class="popup__close" type="button" aria-label="Close popup"></button>
+                <h3 class="popup__title">New place</h3>
+                <form class="popup__form">
+                    <input class="popup_input popup_input_title" type="text" name="Title" placeholder="Title"
+                        required>
+                    <input class="popup_input popup_input_link" type="url" name="Link" placeholder="Image link"
+                        required>
+                    <button class="popup__submit" type="submit">Create</button>
                 </form>
             </div>
-        </div> 
+        </div>
     </div>
     <script src="./script/index.js"></script>
 </body>
