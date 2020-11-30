@@ -1,4 +1,4 @@
-.popup-add__content {
+.popup__content {
     width: 430px;
     min-height: 330px;
     background-color: #fff;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (max-width: 435px) {
-    .popup-add__content {
+    .popup__content {
         width: 282px;
         min-height: 322px;
         padding: 25px 22px;
