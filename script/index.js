@@ -1,28 +1,28 @@
 // Initial Cards
 const initialCards = [{
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-},
-{
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-},
-{
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-},
-{
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-},
-{
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-},
-{
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-}
+        name: "Yosemite Valley",
+        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+        name: "Lake Louise",
+        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+        name: "Bald Mountains",
+        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+        name: "Latemar",
+        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+        name: "Vanoise National Park",
+        link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    }
 ];
 // Create New Card 
 const cardPopup = document.querySelector(".popup.popup_type_card");
@@ -33,15 +33,15 @@ const gallery = document.querySelector(".gallery");
 // Show Card Popup
 const addNewCardButton = document.querySelector(".profile__btn-add");
 const addNewCardPopup = document.querySelector(".popup.popup_type_add");
-const cardForm = document.querySelector(".popup_type_add .popup__form");
-const cardTitleInput = document.querySelector(".popup_input_title");
-const cardLinkInput = document.querySelector(".popup_input_link");
+const cardForm = document.querySelector(".popup_type_add .form");
+const cardTitleInput = document.querySelector("#title-input");
+const cardLinkInput = document.querySelector("#link-input");
 // Edit Profile
 const editProfileButton = document.querySelector(".profile__btn-edit");
 const editProfilePopup = document.querySelector(".popup.popup_type_edit");
-const profileForm = document.querySelector(".popup_type_edit .popup__form");
-const profileNameInput = document.querySelector(".popup_input_name");
-const profileJobInput = document.querySelector(".popup_input_job");
+const profileForm = document.querySelector(".popup_type_edit .form");
+const profileNameInput = document.querySelector("#name-input");
+const profileJobInput = document.querySelector("#job-input")
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__job");
 
@@ -57,9 +57,38 @@ const togglePopup = (modal) => {
 };
 const closeButtons = document.querySelectorAll(".popup__close");
 closeButtons.forEach((closeButton) => {
-    const popup =  closeButton.closest(".popup");
-    closeButton.addEventListener("click", () => togglePopup(popup));
+    const popup = closeButton.closest(".popup");
+    closeButton.addEventListener("click", () => {
+        
+        togglePopup(popup);
+    });
 });
+
+const checkValidationInputs = (formInputs) => formInputs.some((formInput) => {
+    return !formInput.checkValidity()
+})
+
+const showInputError = (input) => {
+    input.classList.add("form__input_type_error");
+    input.nextElementSibling.textContent = input.validationMessage;
+    input.nextElementSibling.classList.add("form__input-error_active");
+};
+
+const hideInputError = (input) => {
+    input.classList.remove("form__input_type_error");
+    input.nextElementSibling.classList.remove("form__input-error_active");
+    input.nextElementSibling.textContent = "";
+};
+
+const showHideInputError = (formInput) => {
+    const isNotValid = !formInput.validity.valid;
+    isNotValid ? showInputError(formInput) : hideInputError(formInput);
+};
+
+const setDisabledButton = (button, isDisabled) => {
+    button.disabled = isDisabled;
+    isDisabled ? button.classList.add("form__submit_disabled") : button.classList.remove("form__submit_disabled");
+};
 
 const createCard = (link, title) => {
     const newCard = cardTemplate.cloneNode(true);
@@ -78,11 +107,11 @@ const createCard = (link, title) => {
     deleteButton.addEventListener("click", deleteCard);
 
     // Open Card Popup
-    cardImage.addEventListener("click", ()=> {
+    cardImage.addEventListener("click", () => {
         popupCardImage.src = link;
         popupCardImage.alt = title;
         popupCardTitle.textContent = title;
-        
+
         togglePopup(cardPopup);
     });
     return newCard;
@@ -90,13 +119,20 @@ const createCard = (link, title) => {
 // ******************************************************************************************
 // Append Initial Cards
 initialCards.forEach((initCard) => {
-const card = createCard(initCard.link, initCard.name);
-gallery.append(card);
+    const card = createCard(initCard.link, initCard.name);
+    gallery.append(card);
 });
 // ******************************************************************************************
 //Open Creating Card Popup
 addNewCardButton.addEventListener("click", () => {
     cardForm.reset();
+
+    const formInputs = Array.from(cardForm.querySelectorAll(".form__input"));
+    formInputs.forEach((formInput) => {
+        hideInputError(formInput);
+    })
+    const formSubmitButton = cardForm.querySelector(".form__submit");
+    setDisabledButton(formSubmitButton, true);
     togglePopup(addNewCardPopup);
 });
 // Create New Card
@@ -112,6 +148,12 @@ cardForm.addEventListener("submit", (evt) => {
 editProfileButton.addEventListener("click", () => {
     profileNameInput.value = nameProfile.textContent;
     profileJobInput.value = jobProfile.textContent;
+    const formInputs = Array.from(profileForm.querySelectorAll(".form__input"));
+    formInputs.forEach((formInput) => {
+        hideInputError(formInput);
+    })
+    const formSubmitButton = profileForm.querySelector(".form__submit");
+    setDisabledButton(formSubmitButton, false);
     togglePopup(editProfilePopup);
 });
 //Save New Profile
@@ -122,4 +164,17 @@ profileForm.addEventListener("submit", (evt) => {
     jobProfile.textContent = profileJobInput.value;
 
     togglePopup(editProfilePopup);
+});
+
+const forms = Array.from(document.querySelectorAll(".form"));
+forms.forEach((form) => {
+    const formInputs = Array.from(form.querySelectorAll(".form__input"));
+    const formSubmitButton = form.querySelector(".form__submit");
+    formInputs.forEach((formInput) => {
+        formInput.addEventListener("input", () => {
+            showHideInputError(formInput);
+            const isNotValid = checkValidationInputs(formInputs);
+            setDisabledButton(formSubmitButton, isNotValid);
+        });
+    });
 });
