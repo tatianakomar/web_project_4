@@ -45,6 +45,8 @@ const profileJobInput = document.querySelector("#job-input")
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__job");
 
+
+
 const likeCard = (evt) => {
     evt.target.classList.toggle("card__btn-like_active");
 };
@@ -63,6 +65,21 @@ closeButtons.forEach((closeButton) => {
         togglePopup(popup);
     });
 });
+
+const escapeButton = (evt) => {
+   if(evt.key  === "Escape") {
+    editProfilePopup.classList.remove("popup_open");
+    addNewCardPopup.classList.remove("popup_open");
+    cardPopup.classList.remove("popup_open");
+   }
+} 
+document.addEventListener("keydown", escapeButton);
+
+const mouseClick = (evt, popup) => {
+    if(!evt.target.closest(".popup__content")) {
+        popup.classList.remove("popup_open");
+    }
+}
 
 const checkValidationInputs = (formInputs) => formInputs.some((formInput) => {
     return !formInput.checkValidity()
@@ -107,11 +124,13 @@ const createCard = (link, title) => {
     deleteButton.addEventListener("click", deleteCard);
 
     // Open Card Popup
-    cardImage.addEventListener("click", () => {
+    cardImage.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
         popupCardImage.src = link;
         popupCardImage.alt = title;
         popupCardTitle.textContent = title;
-
+        document.addEventListener("click", (evt) => {mouseClick(evt, cardPopup)}, {once:true})
         togglePopup(cardPopup);
     });
     return newCard;
@@ -124,9 +143,10 @@ initialCards.forEach((initCard) => {
 });
 // ******************************************************************************************
 //Open Creating Card Popup
-addNewCardButton.addEventListener("click", () => {
+addNewCardButton.addEventListener("click", (evt) => {
     cardForm.reset();
-
+    evt.preventDefault()
+    evt.stopPropagation()
     const formInputs = Array.from(cardForm.querySelectorAll(".form__input"));
     formInputs.forEach((formInput) => {
         hideInputError(formInput);
@@ -134,6 +154,7 @@ addNewCardButton.addEventListener("click", () => {
     const formSubmitButton = cardForm.querySelector(".form__submit");
     setDisabledButton(formSubmitButton, true);
     togglePopup(addNewCardPopup);
+    document.addEventListener("click", (evt) => {mouseClick(evt, addNewCardPopup)})
 });
 // Create New Card
 cardForm.addEventListener("submit", (evt) => {
@@ -145,7 +166,9 @@ cardForm.addEventListener("submit", (evt) => {
 });
 //************************************************************************
 //Open Edit Profile Popup
-editProfileButton.addEventListener("click", () => {
+editProfileButton.addEventListener("click", (evt) => {
+    evt.preventDefault()
+    evt.stopPropagation()
     profileNameInput.value = nameProfile.textContent;
     profileJobInput.value = jobProfile.textContent;
     const formInputs = Array.from(profileForm.querySelectorAll(".form__input"));
@@ -155,6 +178,7 @@ editProfileButton.addEventListener("click", () => {
     const formSubmitButton = profileForm.querySelector(".form__submit");
     setDisabledButton(formSubmitButton, false);
     togglePopup(editProfilePopup);
+    document.addEventListener("click", (evt) => {mouseClick(evt, editProfilePopup)})
 });
 //Save New Profile
 profileForm.addEventListener("submit", (evt) => {
@@ -162,7 +186,7 @@ profileForm.addEventListener("submit", (evt) => {
     // Update profile
     nameProfile.textContent = profileNameInput.value;
     jobProfile.textContent = profileJobInput.value;
-
+    document.addEventListener("click", mouseClick)
     togglePopup(editProfilePopup);
 });
 
