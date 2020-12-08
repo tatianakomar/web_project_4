@@ -1,28 +1,28 @@
 // Initial Cards
 const initialCards = [{
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-},
-{
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-},
-{
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-},
-{
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-},
-{
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-},
-{
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-}
+        name: "Yosemite Valley",
+        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+        name: "Lake Louise",
+        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+        name: "Bald Mountains",
+        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+        name: "Latemar",
+        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+        name: "Vanoise National Park",
+        link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    }
 ];
 // Create New Card 
 const cardPopup = document.querySelector(".popup.popup_type_card");
@@ -34,16 +34,18 @@ const gallery = document.querySelector(".gallery");
 const addNewCardButton = document.querySelector(".profile__btn-add");
 const addNewCardPopup = document.querySelector(".popup.popup_type_add");
 const cardForm = document.querySelector(".popup_type_add .popup__form");
-const cardTitleInput = document.querySelector(".popup_input_title");
-const cardLinkInput = document.querySelector(".popup_input_link");
+const cardTitleInput = document.querySelector("#title-input");
+const cardLinkInput = document.querySelector("#link-input");
 // Edit Profile
 const editProfileButton = document.querySelector(".profile__btn-edit");
 const editProfilePopup = document.querySelector(".popup.popup_type_edit");
 const profileForm = document.querySelector(".popup_type_edit .popup__form");
-const profileNameInput = document.querySelector(".popup_input_name");
-const profileJobInput = document.querySelector(".popup_input_job");
+const profileNameInput = document.querySelector("#name-input");
+const profileJobInput = document.querySelector("#job-input")
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__job");
+
+
 
 const likeCard = (evt) => {
     evt.target.classList.toggle("card__btn-like_active");
@@ -57,9 +59,27 @@ const togglePopup = (modal) => {
 };
 const closeButtons = document.querySelectorAll(".popup__close");
 closeButtons.forEach((closeButton) => {
-    const popup =  closeButton.closest(".popup");
-    closeButton.addEventListener("click", () => togglePopup(popup));
+    const popup = closeButton.closest(".popup");
+    closeButton.addEventListener("click", () => {
+
+        togglePopup(popup);
+    });
 });
+
+const escapeButton = (evt) => {
+    if (evt.key === "Escape") {
+        editProfilePopup.classList.remove("popup_open");
+        addNewCardPopup.classList.remove("popup_open");
+        cardPopup.classList.remove("popup_open");
+    }
+}
+document.addEventListener("keydown", escapeButton);
+
+const mouseClick = (evt, popup) => {
+    if (!evt.target.closest(".popup__content")) {
+        popup.classList.remove("popup_open");
+    }
+}
 
 const createCard = (link, title) => {
     const newCard = cardTemplate.cloneNode(true);
@@ -78,11 +98,15 @@ const createCard = (link, title) => {
     deleteButton.addEventListener("click", deleteCard);
 
     // Open Card Popup
-    cardImage.addEventListener("click", ()=> {
+    cardImage.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
         popupCardImage.src = link;
         popupCardImage.alt = title;
         popupCardTitle.textContent = title;
-        
+        document.addEventListener("click", (evt) => {
+            mouseClick(evt, cardPopup)
+        }, )
         togglePopup(cardPopup);
     });
     return newCard;
@@ -90,14 +114,25 @@ const createCard = (link, title) => {
 // ******************************************************************************************
 // Append Initial Cards
 initialCards.forEach((initCard) => {
-const card = createCard(initCard.link, initCard.name);
-gallery.append(card);
+    const card = createCard(initCard.link, initCard.name);
+    gallery.append(card);
 });
 // ******************************************************************************************
 //Open Creating Card Popup
-addNewCardButton.addEventListener("click", () => {
+addNewCardButton.addEventListener("click", (evt) => {
     cardForm.reset();
+    evt.preventDefault()
+    evt.stopPropagation()
+    const formInputs = Array.from(cardForm.querySelectorAll(validationSettings.inputSelector));
+    formInputs.forEach((formInput) => {
+        hideInputError(formInput);
+    })
+    const formSubmitButton = cardForm.querySelector(validationSettings.submitButtonSelector);
+    setDisabledButton(formSubmitButton, true);
     togglePopup(addNewCardPopup);
+    document.addEventListener("click", (evt) => {
+        mouseClick(evt, addNewCardPopup)
+    })
 });
 // Create New Card
 cardForm.addEventListener("submit", (evt) => {
@@ -109,10 +144,21 @@ cardForm.addEventListener("submit", (evt) => {
 });
 //************************************************************************
 //Open Edit Profile Popup
-editProfileButton.addEventListener("click", () => {
+editProfileButton.addEventListener("click", (evt) => {
+    evt.preventDefault()
+    evt.stopPropagation()
     profileNameInput.value = nameProfile.textContent;
     profileJobInput.value = jobProfile.textContent;
+    const formInputs = Array.from(profileForm.querySelectorAll(validationSettings.inputSelector));
+    formInputs.forEach((formInput) => {
+        hideInputError(formInput);
+    })
+    const formSubmitButton = profileForm.querySelector(validationSettings.submitButtonSelector);
+    setDisabledButton(formSubmitButton, false);
     togglePopup(editProfilePopup);
+    document.addEventListener("click", (evt) => {
+        mouseClick(evt, editProfilePopup)
+    })
 });
 //Save New Profile
 profileForm.addEventListener("submit", (evt) => {
@@ -120,6 +166,5 @@ profileForm.addEventListener("submit", (evt) => {
     // Update profile
     nameProfile.textContent = profileNameInput.value;
     jobProfile.textContent = profileJobInput.value;
-
     togglePopup(editProfilePopup);
 });
