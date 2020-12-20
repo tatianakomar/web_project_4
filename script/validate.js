@@ -6,33 +6,33 @@ const validationSettings = {
     inputErrorClass: "popup__input_type_error",
     errorClass: "popup__error_visible"
 };
-
+//private
 const checkValidationInputs = (inputSelectors) => inputSelectors.some((inputSelector) => {
     return !inputSelector.checkValidity()
 })
-
+//private
 const showInputError = (input) => {
     input.classList.add(validationSettings.inputErrorClass);
     input.nextElementSibling.textContent = input.validationMessage;
     input.nextElementSibling.classList.add(validationSettings.errorClass);
 };
-
+//public
 const hideInputError = (input) => {
     input.classList.remove(validationSettings.inputErrorClass);
     input.nextElementSibling.classList.remove(validationSettings.errorClass);
     input.nextElementSibling.textContent = "";
 };
-
+//private
 const showHideInputError = (inputSelector) => {
     const isNotValid = !inputSelector.validity.valid;
     isNotValid ? showInputError(inputSelector) : hideInputError(inputSelector);
 };
-
+//public
 const setDisabledButton = (button, isDisabled) => {
     button.disabled = isDisabled;
     isDisabled ? button.classList.add(validationSettings.inactiveButtonClass) : button.classList.remove(validationSettings.inactiveButtonClass);
 };
-
+//private
 const enableValidation = (validationSettingParams) => {
     const formSelectors = Array.from(document.querySelectorAll(validationSettingParams.formSelector))
     formSelectors.forEach((form) => {
