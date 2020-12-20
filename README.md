@@ -9,7 +9,7 @@ In this course, I learn about the different data types and how to use them with 
 ## Technologies and Techniques
 
 While developing web_project_4 I used the folowing technologies and techniques:
-* JavaScript
+* JavaScript ES6
 * Figma
 * HTML5, CSS3, markdown
 * BEM
