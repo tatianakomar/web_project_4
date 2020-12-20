@@ -1,6 +1,6 @@
 import {initialCards, Card} from "./Card.js";
-import {openPopup, closePopup} from "./utils.js";
-
+import {openPopup, closePopup, hideInputError, validationSettings, setDisabledButton} from "./utils.js";
+import {FormValidator} from "./FormValidator.js"
  
 const gallery = document.querySelector(".gallery");
 // Show Card Popup
@@ -24,7 +24,11 @@ initialCards.forEach((item) => {
     gallery.append(cardElement);
 });
 
-
+const formSelectors = Array.from(document.querySelectorAll(validationSettings.formSelector))
+formSelectors.forEach((form) => {
+    const formValidator = new FormValidator(validationSettings, form)
+    formValidator.enableValidation()
+});
 
 //Open Creating Card Popup
 addNewCardButton.addEventListener("click", (evt) => {

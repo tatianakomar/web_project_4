@@ -1,3 +1,12 @@
+const validationSettings = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__button",
+    inactiveButtonClass: "popup__button_disabled",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__error_visible"
+};
+
 const openPopup = (modal) => {
     modal.classList.add("popup_open");
     document.addEventListener("keydown", escapeButton);
@@ -28,4 +37,15 @@ const mouseClick = (evt) => {
     }
 }
 
-export {openPopup, closePopup};
+const hideInputError = (input) => {
+    input.classList.remove(validationSettings.inputErrorClass);
+    input.nextElementSibling.classList.remove(validationSettings.errorClass);
+    input.nextElementSibling.textContent = "";
+};
+
+const setDisabledButton = (button, isDisabled) => {
+    button.disabled = isDisabled;
+    isDisabled ? button.classList.add(validationSettings.inactiveButtonClass) : button.classList.remove(validationSettings.inactiveButtonClass);
+};
+
+export {openPopup, closePopup, hideInputError, validationSettings, setDisabledButton};
