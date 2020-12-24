@@ -1,7 +1,7 @@
-import {initialCards, Card} from "./Card.js";
-import {openPopup, closePopup, hideInputError, validationSettings, setDisabledButton} from "./utils.js";
-import {FormValidator} from "./FormValidator.js"
- 
+import { initialCards, Card } from "./Card.js";
+import { openPopup, closePopup, validationSettings } from "./utils.js";
+import { FormValidator } from "./FormValidator.js"
+
 const gallery = document.querySelector(".gallery");
 // Show Card Popup
 const addNewCardButton = document.querySelector(".profile__btn-add");
@@ -18,37 +18,35 @@ const profileJobInput = document.querySelector("#job-input")
 const nameProfile = document.querySelector(".profile__name");
 const jobProfile = document.querySelector(".profile__job");
 
-initialCards.forEach((item) => {
+const cardFormValidator = new FormValidator(validationSettings, cardForm);
+cardFormValidator.enableValidation();
+const profileFormValidator = new FormValidator(validationSettings, profileForm);
+profileFormValidator.enableValidation();
+
+const createCard = (item) => {
     const card = new Card(item, "#card-template");
     const cardElement = card.generateCard();
+    return cardElement;
+}
+initialCards.forEach((item) => {
+    const cardElement = createCard(item)
     gallery.append(cardElement);
 });
-
-const formSelectors = Array.from(document.querySelectorAll(validationSettings.formSelector))
-formSelectors.forEach((form) => {
-    const formValidator = new FormValidator(validationSettings, form)
-    formValidator.enableValidation()
-});
-
 // Open Creating Card Popup
 addNewCardButton.addEventListener("click", (evt) => {
     cardForm.reset();
     evt.preventDefault()
     evt.stopPropagation()
-    const formInputs = Array.from(cardForm.querySelectorAll(validationSettings.inputSelector));
-    formInputs.forEach((formInput) => {
-        hideInputError(formInput);
-    })
-    const formSubmitButton = cardForm.querySelector(validationSettings.submitButtonSelector);
-    setDisabledButton(formSubmitButton, true);
+    cardFormValidator.resetFormValidation(true);
     openPopup(addNewCardPopup);
 });
 // Create New Card
 cardForm.addEventListener("submit", (evt) => {
     evt.preventDefault();
-    const card = new Card({link:cardLinkInput.value,
-        title: cardTitleInput.value}, "#card-template");
-    const cardElement = card.generateCard();        
+    const cardElement = createCard({
+        link: cardLinkInput.value,
+        title: cardTitleInput.value
+    });
     gallery.prepend(cardElement);
     closePopup();
 });
@@ -58,12 +56,7 @@ editProfileButton.addEventListener("click", (evt) => {
     evt.stopPropagation()
     profileNameInput.value = nameProfile.textContent;
     profileJobInput.value = jobProfile.textContent;
-    const formInputs = Array.from(profileForm.querySelectorAll(validationSettings.inputSelector));
-    formInputs.forEach((formInput) => {
-        hideInputError(formInput);
-    })
-    const formSubmitButton = profileForm.querySelector(validationSettings.submitButtonSelector);
-    setDisabledButton(formSubmitButton, false);
+    profileFormValidator.resetFormValidation(false);
     openPopup(editProfilePopup);
 });
 // Save New Profile
