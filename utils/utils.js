@@ -33,4 +33,5 @@ const mouseClick = (evt) => {
         closePopup();
     }
 }
-export { openPopup, closePopup, validationSettings };
+// export { openPopup, closePopup, validationSettings };
+export { validationSettings };

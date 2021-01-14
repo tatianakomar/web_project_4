@@ -1,44 +1,9 @@
-import { openPopup } from "./utils.js";
-// Initial Cards
-const initialCards = [{
-    title: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-},
-{
-    title: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-},
-{
-    title: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-},
-{
-    title: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-},
-{
-    title: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-},
-{
-    title: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-}
-];
-const popupCardImage = document.querySelector(".popup__image");
-const popupCardTitle = document.querySelector(".popup__card-title");
-const cardPopup = document.querySelector(".popup.popup_type_card");
-const handleOpenPopup = (link, title) => {
-    popupCardImage.src = link;
-    popupCardImage.alt = title;
-    popupCardTitle.textContent = title;
-    openPopup(cardPopup);
-}
-class Card {
-    constructor(data, cardSelector) {
+export default class Card {
+    constructor(data, cardSelector, handleCardClick) {
         this._title = data.title;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
     _getTemplate() {
         const cardElement = document.querySelector(this._cardSelector).content.querySelector(".card").cloneNode(true);
@@ -57,7 +22,7 @@ class Card {
         this._cardImage.addEventListener("click", (evt) => {
             evt.preventDefault();
             evt.stopPropagation();
-            handleOpenPopup(this._link, this._title);
+            this._handleCardClick(this._link, this._title);
         });
         const likeButton = this._element.querySelector(".card__btn-like");
         likeButton.addEventListener("click", () => {
@@ -69,4 +34,3 @@ class Card {
         });
     }
 }
-export { initialCards, Card };
