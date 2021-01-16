@@ -4,6 +4,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import Card from "../components/Card.js";
 import { FormValidator, validationSettings } from "../components/FormValidator.js";
 import { initialCards } from "../utils/constants.js"
+import UserInfo from "../components/UserInfo.js";
 
 const gallerySelector = ".gallery";
 const popupSelector = ".popup.popup_type_card";
@@ -12,8 +13,6 @@ const editProfileButton = document.querySelector(".profile__btn-edit");
 const profileForm = document.querySelector(".popup_type_edit .popup__form");
 const profileNameInput = document.querySelector("#name-input");
 const profileJobInput = document.querySelector("#job-input");
-const nameProfile = document.querySelector(".profile__name");
-const jobProfile = document.querySelector(".profile__job");
 
 const addNewCardButton = document.querySelector(".profile__btn-add");
 const cardForm = document.querySelector(".popup_type_add .popup__form");
@@ -21,12 +20,12 @@ const popupAddCardSelector = ".popup.popup_type_add";
 const cardTitleInput = document.querySelector("#title-input");
 const cardLinkInput = document.querySelector("#link-input");
 
+const userInfo = new UserInfo({ nameSelector: ".profile__name", jobSelector: ".profile__job" });
 const popupWithImage = new PopupWithImage(popupSelector);
 const popupEditForm = new PopupWithForm(popupEditSelector, (evt) => {
   // Update profile
   evt.preventDefault();
-  nameProfile.textContent = profileNameInput.value;
-  jobProfile.textContent = profileJobInput.value;
+  userInfo.setUserInfo(profileNameInput.value, profileJobInput.value);
 });
 const poopupCardForm = new PopupWithForm(popupAddCardSelector, (evt) => {
   evt.preventDefault();
@@ -61,8 +60,9 @@ cardList.renderItems();
 editProfileButton.addEventListener("click", (evt) => {
   evt.preventDefault();
   evt.stopPropagation();
-  profileNameInput.value = nameProfile.textContent;
-  profileJobInput.value = jobProfile.textContent;
+  const profileInfo = userInfo.getUserInfo();
+  profileNameInput.value = profileInfo.name;
+  profileJobInput.value = profileInfo.job;
   profileFormValidator.resetFormValidation(false);
   popupEditForm.open();
 });
@@ -74,4 +74,3 @@ addNewCardButton.addEventListener("click", (evt) => {
   cardFormValidator.resetFormValidation(true);
   poopupCardForm.open();
 });
-
