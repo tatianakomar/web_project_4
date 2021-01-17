@@ -5,6 +5,7 @@ import Card from "../components/Card.js";
 import { FormValidator, validationSettings } from "../components/FormValidator.js";
 import { initialCards } from "../utils/constants.js"
 import UserInfo from "../components/UserInfo.js";
+import "./index.css";
 
 const gallerySelector = ".gallery";
 const popupSelector = ".popup.popup_type_card";

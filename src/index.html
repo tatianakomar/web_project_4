@@ -4,18 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Around the U.S.</title>
 </head>
 
 <body>
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="Around the U.S.">
+            <img class="header__logo" src="<%= require("./images/logo.svg")%>"%" alt="Around the U.S.">
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Profile avatar">
+                <img class="profile__avatar" src="<%= require("./images/profile-avatar.jpg")%>"%"  alt="Profile avatar">
                 <div class="profile__info">
                     <div class="profile__title">
                         <h1 class="profile__name">Jacques Cousteau</h1>
@@ -86,7 +85,6 @@
             </div>
         </div>
     </div>
-    <script type="module" src="./pages/index.js"></script>
 </body>
 
 </html>
