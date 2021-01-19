@@ -24,13 +24,16 @@ export default class Card {
             evt.stopPropagation();
             this._handleCardClick(this._link, this._title);
         });
-        const likeButton = this._element.querySelector(".card__btn-like");
-        likeButton.addEventListener("click", () => {
-            likeButton.classList.toggle("card__btn-like_active");
-        });
-        const deleteButton = this._element.querySelector(".card__btn-delete");
-        deleteButton.addEventListener("click", () => {
-            this._element.remove();
-        });
+        this._element.querySelector(".card__btn-like").addEventListener("click", () => this._handleCardLike());
+        
+        this._element.querySelector(".card__btn-delete").addEventListener("click", () => this._handleCardDelete());
+    }
+
+    _handleCardLike() {
+        this._element.querySelector(".card__btn-like").classList.toggle("card__btn-like_active");
+    }
+
+    _handleCardDelete() {
+        this._element.remove();
     }
 }

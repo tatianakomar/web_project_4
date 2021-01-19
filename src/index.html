@@ -55,11 +55,11 @@
                 <h3 class="popup__title">Edit profile</h3>
                 <form class="popup__form" novalidate>
                     <label class="popup__field" for="name-input">
-                        <input class="popup__input" id="name-input" type="text" name="name" placeholder="Name" minlength="2" maxlength="40" required>
+                        <input class="popup__input" id="name-input" type="text" name="name" placeholder="Name" minlength="2" maxlength="40" autocomplete="off" required>
                         <span class="popup__error name-input-error"></span>
                     </label>
                     <label class="popup__field" for="job-input">
-                        <input class="popup__input" id="job-input" type="text" name="job" placeholder="About me" minlength="2" maxlength="200" required>
+                        <input class="popup__input" id="job-input" type="text" name="job" placeholder="About me" minlength="2" maxlength="200" autocomplete="off" required>
                         <span class="popup__error job-input-error"></span>
                     </label>   
                     <button class="popup__button" type="submit">Save</button>
@@ -73,11 +73,11 @@
                 <h3 class="popup__title">New place</h3>
                 <form class="popup__form" novalidate>
                     <label class="popup__field" for="title-input">
-                        <input class="popup__input" id="title-input" type="text" name="title" placeholder="Title" minlength="2" maxlength="30" required>
+                        <input class="popup__input" id="title-input" type="text" name="title" placeholder="Title" minlength="2" maxlength="30" autocomplete="off" required>
                         <span class="popup__error title-input-error"></span>
                     </label>
                     <label class="popup__field" for="link-input">
-                        <input class="popup__input" id="link-input" type="url" name="link" placeholder="Image link" required>
+                        <input class="popup__input" id="link-input" type="url" name="link" placeholder="Image link" autocomplete="off" required>
                         <span class="popup__error link-input-error"></span>
                     </label>
                     <button class="popup__button" type="submit">Create</button>
