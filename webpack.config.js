@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) => {
     const config = {
-        entry: { main: "./src/pages/index.js"},
+        entry: { main: "./src/pages/index.js" },
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "main.js",
@@ -12,11 +12,12 @@ module.exports = (env) => {
         },
         mode: "development",
         devServer: {
-          contentBase: path.resolve(__dirname, "./dist"),
-          compress: true,
-          port: 8080,
-          open: true
+            contentBase: path.resolve(__dirname, "./dist"),
+            compress: true,
+            port: 8080,
+            open: true
         },
+        devtool: 'eval-source-map',
         module: {
             rules: [
                 {
@@ -25,7 +26,8 @@ module.exports = (env) => {
                     exclude: "/node_modules/",
                     options: {
                         presets: [{
-                                  'plugins': ['@babel/plugin-proposal-class-properties']}]
+                            'plugins': ['@babel/plugin-proposal-class-properties']
+                        }]
                     }
                 },
                 {
@@ -42,18 +44,29 @@ module.exports = (env) => {
                     ],
                 },
                 {
-                    test: /\.(png|svg|jpg|gif|woff|woff2)$/,
-                    type: "asset/resource",
+                    test: /\.(png|svg|jpg|gif)$/,
+                    loader: 'file-loader',
+                    options: {
+                        esModule: false
+                    }
+
                 },
+                {
+                    test: /\.(eot|ttf|woff|woff2)$/,
+                    loader: 'file-loader',
+                    options: {
+                        name: './vendor/[name].[ext]'
+                    }
+                }
             ],
         },
         stats: { children: true },
         plugins: [
             new HtmlWebpackPlugin({
                 template: "./src/index.html"
-              }),
-              new MiniCssExtractPlugin(),
+            }),
+            new MiniCssExtractPlugin(),
         ],
-    };      
+    };
     return config;
 } 
