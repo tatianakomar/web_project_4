@@ -8,7 +8,7 @@ export default class UserInfo{
         return {name: this._name.textContent, job: this._job.textContent}
     }
 
-    setUserInfo = (nameValue, jobValue) => {
+    setUserInfo = ({nameValue, jobValue}) => {
         this._name.textContent = nameValue;
         this._job.textContent = jobValue;
     }

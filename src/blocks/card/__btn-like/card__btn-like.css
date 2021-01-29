@@ -5,6 +5,9 @@
     height: 19px;
     cursor: pointer;
     transition: opacity 0.5s;
+    position: absolute;
+    bottom: 38px;
+    right: 18px;
 }
 
 .card__btn-like:hover {
