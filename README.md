@@ -1,4 +1,4 @@
-![Logo of the project](./images/project_logo.png)
+![Logo of the project](./src/images/project_logo.png)
 
 # Around the U.S.
 > web_project_4

@@ -4,24 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Around the U.S.</title>
 </head>
 
 <body>
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/logo.svg" alt="Around the U.S.">
+            <img class="header__logo" src="<%= require("./images/logo.svg")%>"%" alt="Around the U.S.">
         </header>
         <main class="content">
             <section class="profile">
-                <img class="profile__avatar" src="./images/profile-avatar.jpg" alt="Profile avatar">
+                <div class="profile__avatar_overlay">
+                    <img class="profile__avatar" src="<%= require("./images/profile-avatar.jpg")%>"%" alt="Profile
+                    avatar">
+                </div>
                 <div class="profile__info">
                     <div class="profile__title">
-                        <h1 class="profile__name">Jacques Cousteau</h1>
+                        <h1 class="profile__name"></h1>
                         <button class="profile__btn-edit" type="button" aria-label="Edit profile"></button>
                     </div>
-                    <p class="profile__job">Explorer</p>
+                    <p class="profile__job"></p>
                 </div>
                 <button class="profile__btn-add" type="button" aria-label="Add new card"></button>
             </section>
@@ -36,7 +38,10 @@
                 <img class="card__image" src="" alt="">
                 <div class="card__place">
                     <h2 class="card__title"></h2>
-                    <button class="card__btn-like" type="button" aria-label="Like"></button>
+                    <div class="card__like-container">
+                        <button class="card__btn-like" type="button" aria-label="Like"></button>
+                        <span class="card__like-counter"></span>
+                    </div>
                 </div>
                 <button class="card__btn-delete" type="button" aria-label="Delete"></button>
             </div>
@@ -56,14 +61,16 @@
                 <h3 class="popup__title">Edit profile</h3>
                 <form class="popup__form" novalidate>
                     <label class="popup__field" for="name-input">
-                        <input class="popup__input" id="name-input" type="text" name="name" placeholder="Name" minlength="2" maxlength="40" required>
+                        <input class="popup__input" id="name-input" type="text" name="name" placeholder="Name"
+                            minlength="2" maxlength="40" required>
                         <span class="popup__error name-input-error"></span>
                     </label>
                     <label class="popup__field" for="job-input">
-                        <input class="popup__input" id="job-input" type="text" name="job" placeholder="About me" minlength="2" maxlength="200" required>
+                        <input class="popup__input" id="job-input" type="text" name="about" placeholder="About me"
+                            minlength="2" maxlength="200" required>
                         <span class="popup__error job-input-error"></span>
-                    </label>   
-                    <button class="popup__button" type="submit">Save</button>
+                    </label>
+                    <button class="popup__button" type="submit"></button>
                 </form>
             </div>
         </div>
@@ -74,19 +81,45 @@
                 <h3 class="popup__title">New place</h3>
                 <form class="popup__form" novalidate>
                     <label class="popup__field" for="title-input">
-                        <input class="popup__input" id="title-input" type="text" name="title" placeholder="Title" minlength="2" maxlength="30" required>
+                        <input class="popup__input" id="title-input" type="text" name="title" placeholder="Title"
+                            minlength="2" maxlength="30" required>
                         <span class="popup__error title-input-error"></span>
                     </label>
                     <label class="popup__field" for="link-input">
-                        <input class="popup__input" id="link-input" type="url" name="link" placeholder="Image link" required>
+                        <input class="popup__input" id="link-input" type="url" name="link" placeholder="Image link"
+                            required>
                         <span class="popup__error link-input-error"></span>
                     </label>
-                    <button class="popup__button" type="submit">Create</button>
+                    <button class="popup__button" type="submit"></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup popup_type_delete">
+            <div class="popup__content">
+                <button class="popup__close" type="button" aria-label="Close popup"></button>
+                <h3 class="popup__title">Are you sure?</h3>
+                <form class="popup__form" id="delete-form" name="deleteForm" action="#" novalidate>
+                    <button class="popup__button" type="submit">Yes</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup popup_type_avatar">
+            <div class="popup__content">
+                <button class="popup__close" type="button" aria-label="Close popup"></button>
+                <h3 class="popup__title">Change profile picture</h3>
+                <form class="popup__form" novalidate>
+                    <label class="popup__field" for="avatar-input">
+                        <input class="popup__input" id="avatar-input" type="url" name="link" placeholder="Image link"
+                            required>
+                        <span class="popup__error link-input-error"></span>
+                    </label>
+                    <button class="popup__button" type="submit"></button>
                 </form>
             </div>
         </div>
     </div>
-    <script type="module" src="./script/index.js"></script>
 </body>
 
 </html>
