@@ -4,7 +4,6 @@ class Api {
         this._headers = headers;
     }
 
-    // GET https://around.nomoreparties.co/v1/group-08/cards
     getCardList() {
         return fetch(this._baseUrl + "/cards", {
             headers: this._headers
@@ -13,7 +12,6 @@ class Api {
             .catch(err => console.log("err", err))
     }
 
-    // GET https://around.nomoreparties.co/v1/group-08/users/me
     getUserInfo() {
         return fetch(this._baseUrl + "/users/me", {
             headers: this._headers
@@ -26,9 +24,6 @@ class Api {
         return Promise.all([this.getCardList(), this.getUserInfo()])
     }
 
-    getAppInfo() { }
-
-    // POST https://around.nomoreparties.co/v1/group-08/cards
     addCard({ name, link }) {
         return fetch(this._baseUrl + "/cards", {
             method: "POST",
@@ -39,8 +34,6 @@ class Api {
             .catch(err => console.log("err", err))
     }
 
-
-    //DELETE https://around.nomoreparties.co/v1/group-08/cards/cardId
     removeCard(cardID) {
         return fetch(this._baseUrl + `/cards/${cardID}`, {
             method: "DELETE",
@@ -50,8 +43,6 @@ class Api {
             .catch(err => console.log("err", err))
     }
 
-    //PUT https://around.nomoreparties.co/v1/group-08/cards/likes/cardId
-    //DELETE https://around.nomoreparties.co/v1/group-08/cards/likes/cardId
     addLike(cardID) {
         return fetch(this._baseUrl + `/cards/likes/${cardID}`, {
             method: "PUT",
@@ -72,11 +63,25 @@ class Api {
 
     }
 
-    // PATCH https://around.nomoreparties.co/v1/group-08/users/me
-    setUserInfo({ name, about }) { }
+    setUserInfo({ name, about }) {
+        return fetch(this._baseUrl + "/users/me", {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({ name: name, about: about })
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .catch(err => console.log("err", err))
+    }
 
-    // PATCH https://around.nomoreparties.co/v1/group-08/users/me/avatar
-    setUserAvatar({ avatar }) { }
+    setUserAvatar({ avatar }) {
+        return fetch(this._baseUrl + "/users/me/avatar", {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({ avatar: avatar })
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .catch(err => console.log("err", err))
+    }
 }
 
 const api = new Api({
