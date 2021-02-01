@@ -8,7 +8,7 @@ class Api {
         return fetch(this._baseUrl + "/cards", {
             headers: this._headers
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .then(res => res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`))
             .catch(err => console.log("err", err))
     }
 
@@ -16,7 +16,7 @@ class Api {
         return fetch(this._baseUrl + "/users/me", {
             headers: this._headers
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .then(res => res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`))
             .catch(err => console.log("err", err))
     }
 
@@ -30,7 +30,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({ name, link })
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .then(res => res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`))
             .catch(err => console.log("err", err))
     }
 
@@ -39,7 +39,7 @@ class Api {
             method: "DELETE",
             headers: this._headers
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .then(res => res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`))
             .catch(err => console.log("err", err))
     }
 
@@ -48,7 +48,7 @@ class Api {
             method: "PUT",
             headers: this._headers
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .then(res => res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`))
             .catch(err => console.log("err", err))
 
     }
@@ -58,7 +58,7 @@ class Api {
             method: "DELETE",
             headers: this._headers
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .then(res => res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`))
             .catch(err => console.log("err", err))
 
     }
@@ -69,8 +69,12 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({ name: name, about: about })
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
-            .catch(err => console.log("err", err))
+            .then((res) => {
+                return res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`);
+            })
+            .catch((err) => {
+                return Promise.reject(err)
+            })
     }
 
     setUserAvatar({ avatar }) {
@@ -79,7 +83,7 @@ class Api {
             headers: this._headers,
             body: JSON.stringify({ avatar: avatar })
         })
-            .then(res => res.ok ? res.json() : Promise.reject(res, statusText))
+            .then(res => res.ok ? res.json() : Promise.reject(`${res.status} ${res.statusText}`))
             .catch(err => console.log("err", err))
     }
 }
