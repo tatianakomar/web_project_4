@@ -11,11 +11,18 @@ export default class PopupWithForm extends Popup {
             this._submitButton.textContent = updatingText;
             this._submitButton.disabled = true;
             const formInputs = this._getInputValues();
-            handleFormSubmit(formInputs, this._submitButton).then(() => { 
-                this._submitButton.textContent = defaultText;
-                this._submitButton.disabled = false;
-                this.close(); });
-            
+            handleFormSubmit(formInputs, this._submitButton)
+                .then(() => {
+                    this.close();
+                })
+                .catch((err) => {
+                    console.error(err);
+                    return Promise.reject(err)
+                })
+                .finally(() => {
+                    this._submitButton.textContent = defaultText;
+                    this._submitButton.disabled = false;
+                });
         };
     }
 
