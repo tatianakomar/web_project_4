@@ -12,7 +12,6 @@ export class FormValidator {
         this._form = form;
         this._inputList = Array.from(this._form.querySelectorAll(this._validationSettings.inputSelector))
         this._submitButton = this._form.querySelector(this._validationSettings.submitButtonSelector);
-        this._formInputs = Array.from(this._form.querySelectorAll(this._validationSettings.inputSelector)); 
     }
     _showInputError = (input) => {
         input.classList.add(this._validationSettings.inputErrorClass);
@@ -40,8 +39,8 @@ export class FormValidator {
     };
 
     resetFormValidation = (disableButton) => {
-        this._formInputs.forEach((formInput) => {
-            this._hideInputError(formInput);
+        this._inputList.forEach((input) => {
+            this._hideInputError(input);
             this._toggleButtonState(this._submitButton, disableButton);
         });
     }

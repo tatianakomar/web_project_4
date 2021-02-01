@@ -7,7 +7,7 @@ import { FormValidator, validationSettings } from "../components/FormValidator.j
 import UserInfo from "../components/UserInfo.js";
 import api from "../components/Api.js"
 import "./index.css";
-import { gallerySelector, popupEditUserInfo, popupEditAvatar, popupAddCard, popupOpenCardSelector, popupDeleteCardSelector } from "../components/constants.js";
+import { gallerySelector, popupEditUserInfo, popupEditAvatar, popupAddCard, popupOpenCardSelector, popupDeleteCardSelector } from "../utils/constants.js";
 
 const userInfo = new UserInfo({ nameSelector: popupEditUserInfo.nameSelector, aboutSelector: popupEditUserInfo.aboutSelector, avatarSelector: popupEditAvatar.avatarSelector });
 
@@ -22,7 +22,6 @@ const popupOpenCard = new PopupWithImage(popupOpenCardSelector);
 popupOpenCard.setEventListeners();
 
 const popupEditUserInfoForm = new PopupWithForm(popupEditUserInfo.selector, { defaultText: "Save", updatingText: "Saving..." }, (formInputs) => {
-  // Handle exception in the PopupwithForm.js
   return api.setUserInfo({ name: formInputs.name, about: formInputs.about })
     .then((data) => {
       userInfo.setUserInfo({ name: data.name, about: data.about, avatar: data.avatar })
@@ -69,7 +68,6 @@ const deleteSubmitHandler = (cardId, card) => {
     })
     .catch((err) => {
       console.error(err);
-      return Promise.reject(err)
     });
 }
 const popupDeleteCard = new PopupWithSubmit(popupDeleteCardSelector, deleteSubmitHandler);
