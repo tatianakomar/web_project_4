@@ -8,7 +8,7 @@ module.exports = (env) => {
         output: {
             path: path.resolve(__dirname, "dist"),
             filename: "main.js",
-            publicPath: env.production ? "/around-react/" : "/"
+            publicPath: env.production ? "/web_project_4/" : "/"
         },
         mode: "development",
         devServer: {
