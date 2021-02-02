@@ -6,7 +6,8 @@
     font-weight: normal;
     background-color: #000;
     color: #fff;
-    padding: 15px 125px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-radius: 2px;
     border: none;
     margin-top: 45px;
@@ -16,10 +17,4 @@
 
 .popup__button:hover {
     opacity: 0.8;
-}
-
-@media screen and (max-width: 435px) {
-    .popup__button {
-        padding: 14px 100px;
-    }   
 }
