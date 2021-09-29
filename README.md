@@ -18,7 +18,7 @@ While developing web_project_4 I used the folowing technologies and techniques:
 
 ## Link to the project
 
-https://tanyakomar.github.io/web_project_4//index.html
+https://tatianakomar.github.io/web_project_4//index.html
 
 ## Developing
 
