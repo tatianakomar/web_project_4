@@ -7,7 +7,7 @@
 
 ### Features
 
-* Modal popups for
+* Modal popups for:
   — editing of profile information and avatar image
   — adding of place cards with images and titles
   — opening image
