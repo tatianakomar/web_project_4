@@ -8,9 +8,9 @@
 ### Features
 
 * Modal popups for:
-  — editing of profile information and avatar image
-  — adding of place cards with images and titles
-  — opening image
+  * editing of profile information and avatar image
+  * adding of place cards with images and titles
+  * opening image
 * Forms are validated with javascript
 * Delete button for removing cards from database
 * Like button and tracking of likes, per user
